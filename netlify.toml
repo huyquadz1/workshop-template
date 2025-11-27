@@ -1,13 +1,13 @@
 [build]
   publish = "public"
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL --buildDrafts --buildExpired --buildFuture || hugo --gc --minify -b $DEPLOY_PRIME_URL --ignoreCache"
 
 [build.environment]
   HUGO_VERSION = "0.152.2"
   HUGO_ENV = "production"
 
 [context.production]
-  command = "hugo --gc --minify"
+  command = "hugo --gc --minify --buildDrafts --buildExpired --buildFuture || hugo --gc --minify --ignoreCache"
 
 [context.deploy-preview]
   command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
